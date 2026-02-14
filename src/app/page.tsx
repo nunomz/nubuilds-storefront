@@ -1,16 +1,18 @@
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import Link from "next/link";
+import { getProducts } from "@/lib/products";
 
 export default function Home() {
+  const products = getProducts();
+
   return (
     <div className="mx-auto max-w-7xl px-6 py-10">
       {/* Hero Section */}
-      <section className="relative h-96 overflow-visible rounded-2xl">
+      <section className="relative h-96 overflow-hidden rounded-2xl border" style={{ borderColor: "var(--theme-border)" }}>
         {/* Background image with blur */}
         <div className="absolute inset-0 overflow-hidden rounded-2xl">
           <Image
-            src="/images/hero/background.png"
+            src="/images/hero/background.jpeg"
             alt="Hero background"
             fill
             className="object-cover blur-sm brightness-50"
@@ -22,7 +24,7 @@ export default function Home() {
 
         {/* Content */}
         <div className="relative z-10 flex h-full items-center px-10 lg:px-16">
-          {/* Left side — text & buttons */}
+          {/* Left side — text */}
           <div className="flex max-w-lg flex-col gap-5">
             <h1 className="text-4xl font-bold leading-tight tracking-tight text-white lg:text-5xl">
               Built Different.
@@ -31,45 +33,60 @@ export default function Home() {
               Premium custom PCs engineered for peak performance. Crafted with
               precision, designed for power.
             </p>
-            <div className="flex gap-3 pt-2">
-              <Button
-                size="lg"
-                className="rounded-full bg-white px-8 font-semibold text-black hover:bg-neutral-200"
-              >
-                Shop Now
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="rounded-full border-neutral-500 px-8 font-semibold text-white hover:bg-white/10"
-              >
-                Learn More
-              </Button>
-            </div>
           </div>
 
-          {/* Right side — product PNG (overflows the hero) */}
-          <div className="pointer-events-none absolute -right-12 top-1/2 hidden w-[50%] max-h-[28rem] -translate-y-1/2 md:block lg:w-[55%]">
+          {/* Right side — product PNG */}
+          <div className="pointer-events-none absolute right-6 top-1/2 hidden h-[80%] w-[40%] -translate-y-1/2 md:block lg:w-[45%]">
             <Image
               src="/images/hero/product.png"
               alt="Featured product"
               width={900}
               height={600}
-              className="h-full max-h-[28rem] w-auto object-contain drop-shadow-2xl"
+              className="h-full w-full object-contain drop-shadow-2xl"
               priority
             />
           </div>
         </div>
       </section>
 
-      {/* Tiles */}
+      {/* Products */}
       <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {Array.from({ length: 8 }).map((_, i) => (
-          <Card key={i} className="border border-neutral-200 shadow-sm">
-            <CardContent className="flex h-48 items-center justify-center">
-              <span className="text-sm text-neutral-400">Tile {i + 1}</span>
-            </CardContent>
-          </Card>
+        {products.map((product) => (
+          <Link
+            key={product.slug}
+            href={`/products/${product.slug}`}
+            className="group"
+          >
+            <div
+              className="relative aspect-square overflow-hidden rounded-2xl border transition-colors"
+              style={{
+                borderColor: "var(--theme-border)",
+                backgroundColor: "var(--theme-surface)",
+              }}
+            >
+              <Image
+                src={product.images[0] ?? "/images/hero/product.png"}
+                alt={product.name}
+                fill
+                className="object-cover transition-transform group-hover:scale-105"
+              />
+              {/* Hover overlay */}
+              <div className="absolute inset-x-0 bottom-0 translate-y-full bg-gradient-to-t from-black/80 to-transparent px-5 pb-5 pt-10 transition-transform duration-300 group-hover:translate-y-0">
+                <p className="font-semibold text-white">{product.name}</p>
+                <div className="mt-1 flex items-center gap-2">
+                  <span className="text-sm text-neutral-300">{product.price}</span>
+                  <span
+                    className={`rounded-full px-2 py-0.5 text-[10px] font-medium ${product.status === "sold"
+                      ? "bg-red-500/15 text-red-400"
+                      : "bg-emerald-500/15 text-emerald-400"
+                      }`}
+                  >
+                    {product.status === "sold" ? "Sold" : "Available"}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </Link>
         ))}
       </div>
     </div>
