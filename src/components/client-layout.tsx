@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState, useRef, useEffect } from "react";
 import { ThemeProvider } from "./theme-provider";
 import { ThemeDropdown } from "./theme-dropdown";
@@ -15,6 +16,16 @@ const navLinks = [
 export function ClientLayout({ children }: { children: React.ReactNode }) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const menuRef = useRef<HTMLDivElement>(null);
+    const pathname = usePathname();
+
+    // Build breadcrumb segments from the current path
+    const segments = pathname === "/" ? [] : pathname.split("/").filter(Boolean);
+    const breadcrumbs = segments.map((seg, i) => ({
+        label: decodeURIComponent(seg)
+            .replace(/-/g, " ")
+            .replace(/\b\w/g, (c) => c.toUpperCase()),
+        href: "/" + segments.slice(0, i + 1).join("/"),
+    }));
 
     // Close mobile menu on outside click
     useEffect(() => {
@@ -59,37 +70,69 @@ export function ClientLayout({ children }: { children: React.ReactNode }) {
                                 )}
                             </button>
 
-                            <Link
-                                href="/"
-                                className="text-lg font-semibold tracking-tight transition-colors"
-                                style={{ color: "var(--theme-text)" }}
-                            >
-                                nubuilds
-                            </Link>
-
-                            {/* Desktop nav */}
-                            <nav className="ml-8 hidden items-center gap-6 md:flex">
-                                {navLinks.map(({ href, label }) => (
-                                    <Link
-                                        key={href}
-                                        href={href}
-                                        className="text-sm font-medium transition-colors"
-                                        style={{ color: "var(--theme-text-muted)" }}
-                                        onMouseEnter={(e) =>
-                                        (e.currentTarget.style.color =
-                                            "var(--theme-text)")
-                                        }
-                                        onMouseLeave={(e) =>
-                                        (e.currentTarget.style.color =
-                                            "var(--theme-text-muted)")
-                                        }
-                                    >
-                                        {label}
-                                    </Link>
+                            <div className="flex items-center gap-2 min-w-0">
+                                <Link
+                                    href="/"
+                                    className="text-lg font-semibold tracking-tight transition-colors shrink-0"
+                                    style={{ color: breadcrumbs.length > 0 ? "var(--theme-text-muted)" : "var(--theme-text)" }}
+                                >
+                                    nubuilds
+                                </Link>
+                                {breadcrumbs.map((crumb, i) => (
+                                    <span key={crumb.href} className="flex items-center gap-2 min-w-0">
+                                        <span
+                                            className="text-lg font-light select-none shrink-0"
+                                            style={{ color: "var(--theme-text-muted)", opacity: 0.4 }}
+                                        >
+                                            /
+                                        </span>
+                                        {i === breadcrumbs.length - 1 ? (
+                                            <span
+                                                className="text-lg font-semibold tracking-tight truncate"
+                                                style={{ color: "var(--theme-text)" }}
+                                            >
+                                                {crumb.label}
+                                            </span>
+                                        ) : (
+                                            <Link
+                                                href={crumb.href}
+                                                className="text-lg font-semibold tracking-tight transition-colors truncate"
+                                                style={{ color: "var(--theme-text-muted)" }}
+                                            >
+                                                {crumb.label}
+                                            </Link>
+                                        )}
+                                    </span>
                                 ))}
-                            </nav>
+                            </div>
 
-                            <div className="ml-auto">
+                            {/* Desktop nav + theme toggle (right side) */}
+                            <div className="ml-auto hidden items-center gap-6 md:flex">
+                                <nav className="flex items-center gap-6">
+                                    {navLinks.map(({ href, label }) => (
+                                        <Link
+                                            key={href}
+                                            href={href}
+                                            className="text-sm font-medium transition-colors"
+                                            style={{ color: "var(--theme-text-muted)" }}
+                                            onMouseEnter={(e) =>
+                                            (e.currentTarget.style.color =
+                                                "var(--theme-text)")
+                                            }
+                                            onMouseLeave={(e) =>
+                                            (e.currentTarget.style.color =
+                                                "var(--theme-text-muted)")
+                                            }
+                                        >
+                                            {label}
+                                        </Link>
+                                    ))}
+                                </nav>
+                                <ThemeDropdown />
+                            </div>
+
+                            {/* Mobile theme toggle (right side) */}
+                            <div className="ml-auto md:hidden">
                                 <ThemeDropdown />
                             </div>
                         </div>

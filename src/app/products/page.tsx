@@ -12,12 +12,6 @@ export default function ProductsPage() {
 
     return (
         <div className="mx-auto max-w-7xl px-6 py-10">
-            <h1
-                className="mb-8 text-3xl font-bold tracking-tight"
-                style={{ color: "var(--theme-text)" }}
-            >
-                All Products
-            </h1>
 
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
                 {products.map((product) => (
@@ -46,8 +40,8 @@ export default function ProductsPage() {
                                     <span className="text-sm text-neutral-300">{product.price}</span>
                                     <span
                                         className={`rounded-full px-2 py-0.5 text-[10px] font-medium ${product.status === "sold"
-                                                ? "bg-red-500/15 text-red-400"
-                                                : "bg-emerald-500/15 text-emerald-400"
+                                            ? "bg-red-500/15 text-red-400"
+                                            : "bg-emerald-500/15 text-emerald-400"
                                             }`}
                                     >
                                         {product.status === "sold" ? "Sold" : "Available"}
