@@ -18,5 +18,8 @@
     "links": {
         "vinted": "https://www.vinted.com",
         "wallapop": "https://www.wallapop.com"
+    },
+    "filters": {
+        "productType": "PC"
     }
 }

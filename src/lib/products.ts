@@ -10,6 +10,7 @@ export interface Product {
     specs: Record<string, string>;
     images: string[];
     links: Record<string, string>;
+    filters: Record<string, string>;
 }
 
 const PRODUCTS_DIR = path.join(process.cwd(), "public", "products");
@@ -46,6 +47,7 @@ export function getProduct(slug: string): Product | null {
         specs: raw.specs ?? {},
         images,
         links: raw.links ?? {},
+        filters: raw.filters ?? {},
     };
 }
 

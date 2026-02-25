@@ -20,5 +20,8 @@
         "Vinted": "https://www.vinted.com",
         "Wallapop": "https://www.wallapop.com",
         "Facebook Marketplace": "https://www.facebook.com/marketplace"
+    },
+    "filters": {
+        "productType": "PC"
     }
 }
