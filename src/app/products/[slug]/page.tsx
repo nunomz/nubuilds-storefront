@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { getProduct, getProducts } from "@/lib/products";
+import { hasFeedback } from "@/lib/feedback";
 import { ProductGallery } from "@/components/product-gallery";
 import { MarketplaceLinks } from "@/components/marketplace-links";
 
@@ -29,6 +30,8 @@ export default async function ProductPage({
     const { slug } = await params;
     const product = getProduct(slug);
     if (!product) notFound();
+
+    const productHasFeedback = hasFeedback(slug);
 
     return (
         <div className="mx-auto max-w-7xl px-6 py-10">
@@ -115,8 +118,23 @@ export default async function ProductPage({
                         </div>
                     )}
 
-                    {/* Marketplace links */}
-                    <MarketplaceLinks links={product.links} />
+                    {/* View Feedback button + Marketplace links */}
+                    <div className="flex flex-wrap gap-3">
+                        {productHasFeedback && (
+                            <Link
+                                href={`/feedback/${product.slug}`}
+                                className="inline-flex items-center gap-2 rounded-xl border px-5 py-2.5 text-sm font-semibold transition-opacity hover:opacity-80"
+                                style={{
+                                    borderColor: "rgba(251, 191, 36, 0.3)",
+                                    color: "var(--theme-text)",
+                                    backgroundColor: "rgba(251, 191, 36, 0.1)",
+                                }}
+                            >
+                                View Customer Feedback
+                            </Link>
+                        )}
+                        <MarketplaceLinks links={product.links} />
+                    </div>
                 </div>
             </div>
         </div>

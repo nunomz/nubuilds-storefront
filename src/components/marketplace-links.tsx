@@ -12,7 +12,7 @@ export function MarketplaceLinks({ links }: MarketplaceLinksProps) {
     if (entries.length === 0) return null;
 
     return (
-        <div className="flex flex-wrap gap-3">
+        <>
             {entries.map(([label, url]) => (
                 <a
                     key={label}
@@ -30,6 +30,6 @@ export function MarketplaceLinks({ links }: MarketplaceLinksProps) {
                     <ExternalLink className="h-4 w-4" />
                 </a>
             ))}
-        </div>
+        </>
     );
 }
