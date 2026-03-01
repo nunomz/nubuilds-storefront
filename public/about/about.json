@@ -1,0 +1,26 @@
+{
+    "title": "The Story",
+    "paragraphs": [
+        "nubuilds started from a simple idea: custom PCs should look as good as they perform. What began as a hobby of building rigs for friends quickly grew into something bigger — a commitment to delivering premium, hand-built machines that stand out from anything off the shelf.",
+        "Every nubuilds PC is assembled by hand, with meticulous attention to cable management, thermal performance, and aesthetics. From the choice of components to the final power-on, every detail is deliberate."
+    ],
+    "image": "about.jpeg",
+    "stats": [
+        {
+            "value": "25+",
+            "label": "PCs Built"
+        },
+        {
+            "value": "25+",
+            "label": "Happy Clients"
+        },
+        {
+            "value": "3+",
+            "label": "Years Experience"
+        },
+        {
+            "value": "500+",
+            "label": "Components Used"
+        }
+    ]
+}

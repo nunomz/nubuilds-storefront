@@ -39,7 +39,7 @@ export function FeedbackGrid({ items }: FeedbackGridProps) {
 
     return (
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {items.map(({ product, feedback }) => (
+            {items.map(({ product, feedback, feedbackImages }) => (
                 <Link
                     key={product.slug}
                     href={`/feedback/${product.slug}`}
@@ -53,7 +53,7 @@ export function FeedbackGrid({ items }: FeedbackGridProps) {
                         }}
                     >
                         <Image
-                            src={product.images[0] ?? "/images/hero/product.png"}
+                            src={feedbackImages[0] ?? product.images[0] ?? "/images/hero/product.png"}
                             alt={product.name}
                             fill
                             className="object-cover transition-transform group-hover:scale-105"

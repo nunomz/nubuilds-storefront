@@ -44,7 +44,10 @@ export function getProductFeedback(slug: string): ProductWithFeedback | null {
     // Discover feedback images
     const feedbackPicsDir = path.join(PRODUCTS_DIR, slug, "feedback_pics");
     let feedbackImages: string[] = [];
-    if (fs.existsSync(feedbackPicsDir)) {
+
+    if (Array.isArray(raw.images) && raw.images.length > 0) {
+        feedbackImages = raw.images.map((f: string) => `/products/${slug}/feedback_pics/${f}`);
+    } else if (fs.existsSync(feedbackPicsDir)) {
         feedbackImages = fs
             .readdirSync(feedbackPicsDir)
             .filter((f) => /\.(png|jpe?g|webp)$/i.test(f))
