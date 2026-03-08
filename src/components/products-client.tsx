@@ -4,6 +4,8 @@ import { useMemo, useState } from "react";
 import type { Product } from "@/lib/products";
 import { ProductFilters } from "./product-filters";
 import { ProductGrid } from "./product-grid";
+import { useLocale } from "./language-provider";
+import { t } from "@/lib/i18n";
 
 interface ProductsClientProps {
     products: Product[];
@@ -11,6 +13,7 @@ interface ProductsClientProps {
 
 export function ProductsClient({ products }: ProductsClientProps) {
     const [activeFilters, setActiveFilters] = useState<Record<string, string | null>>({});
+    const { locale } = useLocale();
 
     // Derive available filter definitions from all products
     const filterDefs = useMemo(() => {
@@ -21,16 +24,16 @@ export function ProductsClient({ products }: ProductsClientProps) {
                 map.get(key)!.add(value);
             }
         }
-        // Build filter definitions with human-readable labels
+        // Build filter definitions with translated labels
         const labelMap: Record<string, string> = {
-            productType: "Product Type",
+            productType: t(locale, "filter.productType"),
         };
         return Array.from(map.entries()).map(([key, values]) => ({
             key,
             label: labelMap[key] ?? key,
             options: Array.from(values).sort(),
         }));
-    }, [products]);
+    }, [products, locale]);
 
     // Apply active filters
     const filtered = useMemo(() => {

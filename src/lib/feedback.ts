@@ -1,11 +1,12 @@
 import fs from "fs";
 import path from "path";
 import type { Product } from "./products";
+import type { LocalizedString } from "./i18n";
 import { getProduct, getProducts } from "./products";
 
 export interface Feedback {
-    review_title: string;
-    review_body: string;
+    review_title: LocalizedString;
+    review_body: LocalizedString;
     rating: number;
     sell_date: string;
     reviewer_name: string;

@@ -1,12 +1,14 @@
 import fs from "fs";
 import path from "path";
+import type { LocalizedString } from "./i18n";
 
 export interface Product {
     slug: string;
-    name: string;
-    description: string;
+    name: LocalizedString;
+    description: LocalizedString;
     price: string;
     status: "available" | "sold";
+    sold_date?: string;
     specs: Record<string, string>;
     images: string[];
     links: Record<string, string>;
@@ -44,6 +46,7 @@ export function getProduct(slug: string): Product | null {
         description: raw.description ?? "",
         price: raw.price ?? "",
         status: raw.status === "sold" ? "sold" : "available",
+        sold_date: raw.sold_date,
         specs: raw.specs ?? {},
         images,
         links: raw.links ?? {},

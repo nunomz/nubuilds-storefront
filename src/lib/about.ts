@@ -1,11 +1,12 @@
 import fs from "fs";
 import path from "path";
+import type { LocalizedString } from "./i18n";
 
 export interface AboutData {
-    title: string;
-    paragraphs: string[];
+    title: LocalizedString;
+    paragraphs: LocalizedString[];
     image: string;
-    stats: { value: string; label: string }[];
+    stats: { value: string; label: LocalizedString }[];
 }
 
 const ABOUT_DIR = path.join(process.cwd(), "public", "about");

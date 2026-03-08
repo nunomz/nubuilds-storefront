@@ -1,0 +1,36 @@
+{
+    "name": {
+        "en": "PC for Beatriz",
+        "pt": "PC para Beatriz",
+        "es": "PC para Beatriz"
+    },
+    "description": {
+        "en": "A custom PC build tailored for Beatriz, featuring a liquid-cooled processor, high-end GPU, and ultra-fast NVMe storage. This machine handles everything from 4K gaming to heavy workstation tasks without breaking a sweat.",
+        "pt": "Um PC personalizado feito à medida para Beatriz, com processador refrigerado a líquido, GPU de alta performance e armazenamento NVMe ultrarrápido. Esta máquina lida com tudo, desde jogos em 4K a tarefas pesadas de workstation, sem qualquer problema.",
+        "es": "Un PC personalizado hecho a medida para Beatriz, con procesador refrigerado por líquido, GPU de alto rendimiento y almacenamiento NVMe ultrarrápido. Esta máquina maneja todo, desde juegos en 4K hasta tareas pesadas de estación de trabajo, sin ningún problema."
+    },
+    "price": "850€",
+    "status": "sold",
+    "sold_date": "2024-12-05",
+    "images": [
+        "main.png"
+    ],
+    "specs": {
+        "CPU": "AMD Ryzen 5 1400",
+        "GPU": "MSI Nvidia GTX 1060 6gb",
+        "RAM": "32GB DDR4",
+        "Motherboard": "Gigabyte B450M DS3H",
+        "Storage": "Kingston NV2 1TB Gen4 M.2 NVMe",
+        "Cooling": "AMD Wraith Stealth",
+        "PSU": "Kolink Modular Power",
+        "Case": "Kolink Stronghold M"
+    },
+    "links": {
+        "Vinted": "https://www.vinted.com",
+        "Wallapop": "https://www.wallapop.com",
+        "Facebook Marketplace": "https://www.facebook.com/marketplace"
+    },
+    "filters": {
+        "productType": "PC"
+    }
+}

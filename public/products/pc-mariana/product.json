@@ -1,0 +1,36 @@
+{
+    "name": {
+        "en": "PC for Mariana",
+        "pt": "PC para Mariana",
+        "es": "PC para Mariana"
+    },
+    "description": {
+        "en": "A custom PC build tailored for Mariana, featuring a liquid-cooled processor, high-end GPU, and ultra-fast NVMe storage. This machine handles everything from 4K gaming to heavy workstation tasks without breaking a sweat.",
+        "pt": "Um PC personalizado feito à medida para Mariana, com processador refrigerado a líquido, GPU de alta performance e armazenamento NVMe ultrarrápido. Esta máquina lida com tudo, desde jogos em 4K a tarefas pesadas de workstation, sem qualquer problema.",
+        "es": "Un PC personalizado hecho a medida para Mariana, con procesador refrigerado por líquido, GPU de alto rendimiento y almacenamiento NVMe ultrarrápido. Esta máquina maneja todo, desde juegos en 4K hasta tareas pesadas de estación de trabajo, sin ningún problema."
+    },
+    "price": "850€",
+    "status": "sold",
+    "sold_date": "2025-03-10",
+    "images": [
+        "main.png"
+    ],
+    "specs": {
+        "CPU": "AMD Ryzen 5 7500F",
+        "GPU": "XFX AMD RX 9060XT 16GB",
+        "RAM": "16GB DDR5",
+        "Motherboard": "Asus TUF Gaming B650M Plus WIFI",
+        "Storage": "Samsung 980 512GB NVMe",
+        "Cooling": "Jonsbo CR-1400",
+        "PSU": "MSI MAG A650BN 80+ Bronze",
+        "Case": "MSI MAG M100A"
+    },
+    "links": {
+        "Vinted": "https://www.vinted.com",
+        "Wallapop": "https://www.wallapop.com",
+        "Facebook Marketplace": "https://www.facebook.com/marketplace"
+    },
+    "filters": {
+        "productType": "PC"
+    }
+}

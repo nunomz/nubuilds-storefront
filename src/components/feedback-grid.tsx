@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import type { ProductWithFeedback } from "@/lib/feedback";
 import { Star } from "lucide-react";
+import { useLocale } from "@/components/language-provider";
+import { localize, t } from "@/lib/i18n";
 
 interface FeedbackGridProps {
     items: ProductWithFeedback[];
@@ -26,13 +28,15 @@ function StarRating({ rating }: { rating: number }) {
 }
 
 export function FeedbackGrid({ items }: FeedbackGridProps) {
+    const { locale } = useLocale();
+
     if (items.length === 0) {
         return (
             <p
                 className="py-20 text-center text-sm"
                 style={{ color: "var(--theme-text-muted)" }}
             >
-                No feedback available yet.
+                {t(locale, "empty.feedback")}
             </p>
         );
     }
@@ -54,7 +58,7 @@ export function FeedbackGrid({ items }: FeedbackGridProps) {
                     >
                         <Image
                             src={feedbackImages[0] ?? product.images[0] ?? "/images/hero/product.png"}
-                            alt={product.name}
+                            alt={localize(product.name, locale)}
                             fill
                             className="object-cover transition-transform group-hover:scale-105"
                         />
@@ -67,7 +71,7 @@ export function FeedbackGrid({ items }: FeedbackGridProps) {
                                 </span>
                             </div>
                             <p className="mt-1.5 font-semibold text-white">
-                                &ldquo;{feedback.review_title}&rdquo;
+                                &ldquo;{localize(feedback.review_title, locale)}&rdquo;
                             </p>
                             <p className="mt-0.5 text-sm text-neutral-300">
                                 — {feedback.reviewer_name}

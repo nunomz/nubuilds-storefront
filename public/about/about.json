@@ -1,26 +1,54 @@
 {
-    "title": "The Story",
+    "title": {
+        "en": "The Story",
+        "pt": "A História",
+        "es": "La Historia"
+    },
     "paragraphs": [
-        "nubuilds started from a simple idea: custom PCs should look as good as they perform. What began as a hobby of building rigs for friends quickly grew into something bigger — a commitment to delivering premium, hand-built machines that stand out from anything off the shelf.",
-        "Every nubuilds PC is assembled by hand, with meticulous attention to cable management, thermal performance, and aesthetics. From the choice of components to the final power-on, every detail is deliberate."
+        {
+            "en": "nubuilds started from a simple idea: custom PCs should look as good as they perform. What began as a hobby of building rigs for friends quickly grew into something bigger — a commitment to delivering premium, hand-built machines that stand out from anything off the shelf.",
+            "pt": "A nubuilds nasceu de uma ideia simples: PCs personalizados devem ter tão boa aparência quanto desempenho. O que começou como um hobby de montar computadores para amigos rapidamente se transformou em algo maior — um compromisso de entregar máquinas premium, montadas à mão, que se destacam de qualquer coisa pronta nas prateleiras.",
+            "es": "nubuilds nació de una idea simple: los PCs personalizados deben verse tan bien como rinden. Lo que empezó como un hobby de armar equipos para amigos rápidamente se convirtió en algo más grande — un compromiso de entregar máquinas premium, ensambladas a mano, que se destacan de cualquier cosa del mercado."
+        },
+        {
+            "en": "Every nubuilds PC is assembled by hand, with meticulous attention to cable management, thermal performance, and aesthetics. From the choice of components to the final power-on, every detail is deliberate.",
+            "pt": "Cada PC da nubuilds é montado à mão, com atenção meticulosa à gestão de cabos, desempenho térmico e estética. Desde a escolha dos componentes até ao último arranque, cada detalhe é deliberado.",
+            "es": "Cada PC de nubuilds se ensambla a mano, con atención meticulosa a la gestión de cables, rendimiento térmico y estética. Desde la elección de componentes hasta el encendido final, cada detalle es deliberado."
+        }
     ],
     "image": "about.jpeg",
     "stats": [
         {
             "value": "25+",
-            "label": "PCs Built"
+            "label": {
+                "en": "PCs Built",
+                "pt": "PCs Montados",
+                "es": "PCs Ensamblados"
+            }
         },
         {
             "value": "25+",
-            "label": "Happy Clients"
+            "label": {
+                "en": "Happy Clients",
+                "pt": "Clientes Satisfeitos",
+                "es": "Clientes Satisfechos"
+            }
         },
         {
             "value": "3+",
-            "label": "Years Experience"
+            "label": {
+                "en": "Years Experience",
+                "pt": "Anos de Experiência",
+                "es": "Años de Experiencia"
+            }
         },
         {
             "value": "500+",
-            "label": "Components Used"
+            "label": {
+                "en": "Components Used",
+                "pt": "Componentes Usados",
+                "es": "Componentes Usados"
+            }
         }
     ]
 }

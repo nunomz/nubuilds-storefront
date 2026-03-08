@@ -2,6 +2,8 @@
 
 import { useState, useRef, useEffect } from "react";
 import { SlidersHorizontal, ChevronDown } from "lucide-react";
+import { useLocale } from "@/components/language-provider";
+import { t } from "@/lib/i18n";
 
 interface FilterDef {
     key: string;
@@ -28,6 +30,7 @@ function FilterDropdown({
 }) {
     const [open, setOpen] = useState(false);
     const ref = useRef<HTMLDivElement>(null);
+    const { locale } = useLocale();
 
     useEffect(() => {
         function handleClick(e: MouseEvent) {
@@ -94,7 +97,7 @@ function FilterDropdown({
                                 e.currentTarget.style.color = !value ? "var(--theme-text)" : "var(--theme-text-muted)";
                             }}
                         >
-                            All
+                            {t(locale, "filter.all")}
                         </button>
                         {options.map((opt) => (
                             <button

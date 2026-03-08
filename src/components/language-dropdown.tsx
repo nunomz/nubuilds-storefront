@@ -1,11 +1,12 @@
 "use client";
 
-import { useTheme, themes } from "./theme-provider";
-import { Palette } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
+import { Globe } from "lucide-react";
+import { LOCALES } from "@/lib/i18n";
+import { useLocale } from "./language-provider";
 
-export function ThemeDropdown() {
-    const { theme, setTheme } = useTheme();
+export function LanguageDropdown() {
+    const { locale, setLocale } = useLocale();
     const [open, setOpen] = useState(false);
     const ref = useRef<HTMLDivElement>(null);
 
@@ -20,22 +21,24 @@ export function ThemeDropdown() {
         return () => document.removeEventListener("mousedown", handleClick);
     }, []);
 
+    const current = LOCALES.find((l) => l.code === locale) ?? LOCALES[0];
+
     return (
         <div className="relative" ref={ref}>
             <button
                 onClick={() => setOpen(!open)}
                 className="flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-medium transition-colors"
-                style={{
-                    color: "var(--theme-text-muted)",
-                }}
+                style={{ color: "var(--theme-text-muted)" }}
                 onMouseEnter={(e) =>
                     (e.currentTarget.style.color = "var(--theme-text)")
                 }
                 onMouseLeave={(e) =>
                     (e.currentTarget.style.color = "var(--theme-text-muted)")
                 }
+                aria-label="Change language"
             >
-                <Palette className="h-4 w-4" />
+                <Globe className="h-4 w-4" />
+                <span className="hidden sm:inline">{current.code.toUpperCase()}</span>
             </button>
 
             {open && (
@@ -46,47 +49,38 @@ export function ThemeDropdown() {
                         borderColor: "var(--theme-border)",
                     }}
                 >
-                    {themes.map((t) => (
+                    {LOCALES.map((l) => (
                         <button
-                            key={t.name}
+                            key={l.code}
                             onClick={() => {
-                                setTheme(t.name);
+                                setLocale(l.code);
                                 setOpen(false);
                             }}
                             className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-left text-sm transition-colors"
                             style={{
                                 color:
-                                    t.name === theme.name
+                                    l.code === locale
                                         ? "var(--theme-text)"
                                         : "var(--theme-text-muted)",
                                 backgroundColor:
-                                    t.name === theme.name
+                                    l.code === locale
                                         ? "var(--theme-surface)"
                                         : "transparent",
                             }}
                             onMouseEnter={(e) => {
-                                if (t.name !== theme.name) {
+                                if (l.code !== locale) {
                                     e.currentTarget.style.backgroundColor =
                                         "var(--theme-surface)";
                                 }
                             }}
                             onMouseLeave={(e) => {
-                                if (t.name !== theme.name) {
+                                if (l.code !== locale) {
                                     e.currentTarget.style.backgroundColor =
                                         "transparent";
                                 }
                             }}
                         >
-                            <span
-                                className="h-4 w-4 shrink-0 rounded-full border"
-                                style={{
-                                    backgroundColor: t.bg,
-                                    borderColor: t.isDark
-                                        ? "rgba(255,255,255,0.2)"
-                                        : "rgba(0,0,0,0.15)",
-                                }}
-                            />
-                            {t.name}
+                            {l.label}
                         </button>
                     ))}
                 </div>

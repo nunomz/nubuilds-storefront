@@ -1,0 +1,37 @@
+{
+    "name": {
+        "en": "PC for Pedro",
+        "pt": "PC para Pedro",
+        "es": "PC para Pedro"
+    },
+    "description": {
+        "en": "A custom PC build tailored for Pedro, featuring a liquid-cooled processor, high-end GPU, and ultra-fast NVMe storage. This machine handles everything from 4K gaming to heavy workstation tasks without breaking a sweat.",
+        "pt": "Um PC personalizado feito à medida para Pedro, com processador refrigerado a líquido, GPU de alta performance e armazenamento NVMe ultrarrápido. Esta máquina lida com tudo, desde jogos em 4K a tarefas pesadas de workstation, sem qualquer problema.",
+        "es": "Un PC personalizado hecho a medida para Pedro, con procesador refrigerado por líquido, GPU de alto rendimiento y almacenamiento NVMe ultrarrápido. Esta máquina maneja todo, desde juegos en 4K hasta tareas pesadas de estación de trabajo, sin ningún problema."
+    },
+    "price": "$3,499",
+    "status": "sold",
+    "sold_date": "2025-01-15",
+    "images": [
+        "1723-pc-racing-ordenador-gaming-amd-ryzen-3-3200g-16gb-480gb-ssd-windows-11-pro-mejor-precio.webp",
+        "main.png"
+    ],
+    "specs": {
+        "CPU": "AMD Ryzen 5 7600",
+        "GPU": "Sapphire AMD RX 7800 XT Pulse 16GB GDDR6",
+        "RAM": "32GB DDR5",
+        "Motherboard": "MSI B650M Gaming Plus WIFI",
+        "Storage": "Kingston NV2 1TB Gen4 M.2 NVMe",
+        "Cooling": "AMD Wraith Stealth",
+        "PSU": "",
+        "Case": "Deepcool CC360 Micro-ATX"
+    },
+    "links": {
+        "Vinted": "https://www.vinted.com",
+        "Wallapop": "https://www.wallapop.com",
+        "Facebook Marketplace": "https://www.facebook.com/marketplace"
+    },
+    "filters": {
+        "productType": "PC"
+    }
+}

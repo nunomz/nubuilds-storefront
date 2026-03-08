@@ -3,6 +3,8 @@
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Send, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
+import { useLocale } from "@/components/language-provider";
+import { t } from "@/lib/i18n";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -10,6 +12,7 @@ export default function ContactForm() {
     const [status, setStatus] = useState<Status>("idle");
     const [errorMsg, setErrorMsg] = useState("");
     const formRef = useRef<HTMLFormElement>(null);
+    const { locale } = useLocale();
 
     const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -32,11 +35,11 @@ export default function ContactForm() {
                 formRef.current?.reset();
             } else {
                 setStatus("error");
-                setErrorMsg(data.message || "Something went wrong. Please try again.");
+                setErrorMsg(data.message || t(locale, "form.errorDefault"));
             }
         } catch {
             setStatus("error");
-            setErrorMsg("Network error. Please check your connection and try again.");
+            setErrorMsg(t(locale, "form.errorNetwork"));
         }
     };
 
@@ -54,9 +57,8 @@ export default function ContactForm() {
         <motion.form
             ref={formRef}
             onSubmit={onSubmit}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 1, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
             className="flex flex-col gap-6"
         >
             {/* Name */}
@@ -66,14 +68,14 @@ export default function ContactForm() {
                     className="text-sm font-medium tracking-wide uppercase"
                     style={labelStyle}
                 >
-                    Name
+                    {t(locale, "form.name")}
                 </label>
                 <input
                     id="contact-name"
                     type="text"
                     name="name"
                     required
-                    placeholder="Your name"
+                    placeholder={t(locale, "form.namePlaceholder")}
                     className="rounded-xl border px-4 py-3 text-sm outline-none transition-all duration-200 placeholder:opacity-40 focus:ring-2 focus:ring-white/20"
                     style={inputStyle}
                 />
@@ -86,14 +88,14 @@ export default function ContactForm() {
                     className="text-sm font-medium tracking-wide uppercase"
                     style={labelStyle}
                 >
-                    Email
+                    {t(locale, "form.email")}
                 </label>
                 <input
                     id="contact-email"
                     type="email"
                     name="email"
                     required
-                    placeholder="you@example.com"
+                    placeholder={t(locale, "form.emailPlaceholder")}
                     className="rounded-xl border px-4 py-3 text-sm outline-none transition-all duration-200 placeholder:opacity-40 focus:ring-2 focus:ring-white/20"
                     style={inputStyle}
                 />
@@ -106,14 +108,14 @@ export default function ContactForm() {
                     className="text-sm font-medium tracking-wide uppercase"
                     style={labelStyle}
                 >
-                    Message
+                    {t(locale, "form.message")}
                 </label>
                 <textarea
                     id="contact-message"
                     name="message"
                     required
                     rows={5}
-                    placeholder="Tell me what you're looking for..."
+                    placeholder={t(locale, "form.messagePlaceholder")}
                     className="resize-none rounded-xl border px-4 py-3 text-sm outline-none transition-all duration-200 placeholder:opacity-40 focus:ring-2 focus:ring-white/20"
                     style={inputStyle}
                 />
@@ -135,12 +137,12 @@ export default function ContactForm() {
                 {status === "submitting" ? (
                     <>
                         <Loader2 className="h-4 w-4 animate-spin" />
-                        Sending...
+                        {t(locale, "form.sending")}
                     </>
                 ) : (
                     <>
                         <Send className="h-4 w-4" />
-                        Send Message
+                        {t(locale, "form.send")}
                     </>
                 )}
             </motion.button>
@@ -162,7 +164,7 @@ export default function ContactForm() {
                     >
                         <CheckCircle className="h-5 w-5 shrink-0" />
                         <p className="text-sm font-medium">
-                            Message sent successfully! I&apos;ll get back to you soon.
+                            {t(locale, "form.success")}
                         </p>
                     </motion.div>
                 )}
